@@ -1,3 +1,3 @@
-# Docs from the kosmoedge project
+# Kosmoedge Docs
 
-- [NMF services network configuration for Kubernetes](./nmf-network-howto-k8s.md)
+Documentation, publications, guides, how to
