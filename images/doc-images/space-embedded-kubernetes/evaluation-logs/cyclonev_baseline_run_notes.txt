@@ -1,0 +1,107 @@
+2026-10-19T18:16:28Z stop-begin
+2026-10-19T18:16:34Z killall rc=0
+2026-10-19T18:16:36Z remaining: 0 k3s/containerd processes
+2026-10-19T18:16:36Z stop-done
+2026-10-19T18:17:06Z capture-begin
+2026-10-19T18:17:35Z capture-done
+2026-10-19T18:17:37Z containerd start rc=0
+2026-10-19T18:19:14Z k3s start rc=0
+
+PID   COMMAND
+    1 {systemd} /sbin/init earlyprintk
+    2 [kthreadd]
+    3 [rcu_gp]
+    4 [rcu_par_gp]
+    5 [netns]
+    9 [mm_percpu_wq]
+   10 [rcu_tasks_rude_]
+   11 [ksoftirqd/0]
+   12 [rcu_sched]
+   13 [migration/0]
+   14 [cpuhp/0]
+   15 [cpuhp/1]
+   16 [migration/1]
+   17 [ksoftirqd/1]
+   20 [kdevtmpfs]
+   21 [inet_frag_wq]
+   23 [khungtaskd]
+   24 [oom_reaper]
+   25 [writeback]
+   26 [kcompactd0]
+   56 [kblockd]
+   57 [blkcg_punt_bio]
+   58 [watchdogd]
+   60 [rpciod]
+   63 [kworker/u5:0]
+   64 [xprtiod]
+   66 [kswapd0]
+   67 [nfsiod]
+   69 [kthrotld]
+   70 [spi1]
+   71 [stmmac_wq]
+   74 [mld]
+   75 [ipv6_addrconf]
+   77 [mmc_complete]
+   80 [jbd2/mmcblk0p2-]
+   81 [ext4-rsv-conver]
+  103 /usr/sbin/rpcbind -w -f
+  104 /lib/systemd/systemd-journald
+  121 /lib/systemd/systemd-udevd
+  135 /lib/systemd/systemd-timesyncd
+  144 /sbin/klogd -n
+  145 /sbin/syslogd -n
+  146 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+  148 /sbin/agetty -o -p -- \u --noclear - linux
+  151 /usr/sbin/ofonod -n
+  152 /sbin/agetty -8 -L ttyS0 115200 linux
+  155 /lib/systemd/systemd-logind
+  156 /www/pages/cgi-bin/scroll_server
+  171 /usr/sbin/connmand -n
+  172 /lib/systemd/systemd-networkd
+  173 [jbd2/mmcblk0p4-]
+  174 [ext4-rsv-conver]
+  175 avahi-daemon: running [cyclone5-37.local]
+  176 avahi-daemon: chroot helper
+  191 /usr/sbin/wpa_supplicant -u
+  196 /usr/sbin/rpc.statd -F
+  304 /usr/sbin/lighttpd -D -f /etc/lighttpd/lighttpd.conf
+ 6415 [kworker/1:2H-kb]
+ 6463 [kworker/u4:1-ev]
+ 7266 [kworker/1:2-eve]
+15633 [kworker/0:3H-mm]
+15671 [kworker/u4:2-ev]
+15702 sshd: root@pts/0
+15704 -sh
+15860 [kworker/1:1-cgr]
+15952 [kworker/0:2-eve]
+16102 [kworker/0:0H-ev]
+16137 [kworker/1:1H-kb]
+16160 [kworker/0:0-eve]
+16286 [kworker/u4:0-ev]
+16287 [kworker/1:0-eve]
+16390 [kworker/0:1H-kb]
+16450 [kworker/0:1-eve]
+16471 [kworker/1:0H-kb]
+16619 /bin/sh /run/eval/baseline.sh
+16626 [kworker/0:2H-ev]
+16998 [kworker/1:3-mm_]
+17001 [kworker/0:3-mm_]
+17135 (udev-worker)
+17137 (udev-worker)
+17163 (udev-worker)
+17164 (udev-worker)
+17217 ps -o pid,args
+
+## Recovery timeline after `systemctl start containerd k3s` (UTC, 2026-10-19)
+18:16:28 stop-begin (systemctl stop k3s containerd + k3s-killall.sh)
+18:16:36 0 k3s/containerd processes left
+18:17:06-18:17:35 baseline capture
+18:17:37 containerd started, k3s starting
+18:19:14 k3s.service active (API server + CRDs ~1.6 min)
+18:19:31 kube-proxy rules programmed (pods that started earlier crash-looped once on 10.43.0.1 timeouts)
+18:19:58 fpga-power-scaler could not read PowerState while API was unreachable -> fail-safe CRITICAL:
+         node labelled critical, relocatable pods (nmf-clock, demo-imaging) evicted, workers shed
+18:21:03 dwell stage 1 done -> CONSERVE ; 18:21:19 stage 2 done -> NORMAL, workers restored
+18:22:35-18:22:38 kube-controller-manager started deployment/statefulset/daemonset/replicaset controllers
+         (~5 min after start); evicted pods recreated on cyclone5-37
+~18:24   all pods Ready, PowerState NORMAL
